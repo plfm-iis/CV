@@ -1,0 +1,47 @@
+name: Push approved Humboldt publication list to Overleaf
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/push-humboldt-publication.yml']
+permissions:
+  contents: read
+concurrency:
+  group: cv-overleaf-bridge
+  cancel-in-progress: false
+jobs:
+  push:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Push approved publication list with revision guard
+        shell: bash
+        env:
+          OVERLEAF_GIT_TOKEN: ${{ secrets.OVERLEAF_GIT_TOKEN }}
+        run: |
+          set -euo pipefail
+          test -n "$OVERLEAF_GIT_TOKEN"
+          git diff --quiet b20765147c5131b071b773bc771b20248d75e695 HEAD -- humboldt-publication.tex
+          git show b20765147c5131b071b773bc771b20248d75e695:humboldt-publication.tex > "$RUNNER_TEMP/approved.tex"
+          askpass="$(mktemp "$RUNNER_TEMP/askpass.XXXXXX")"
+          trap 'rm -f "$askpass"' EXIT
+          printf '%s\n' '#!/bin/sh' 'case "$1" in *Username*) echo git ;; *Password*) echo "$OVERLEAF_GIT_TOKEN" ;; *) exit 1 ;; esac' > "$askpass"
+          chmod 700 "$askpass"
+          export GIT_ASKPASS="$askpass" GIT_TERMINAL_PROMPT=0
+          url="https://git@git.overleaf.com/6704e7d42e9e70f3e90c0b29"
+          expected="a2658a76830a5360f600f66c126e90c30b3f6a9e"
+          current="$(git ls-remote "$url" refs/heads/main | cut -f1)"
+          test "$current" = "$expected" || { echo "::error::Overleaf changed; refusing overwrite"; exit 1; }
+          git clone --quiet -b main "$url" "$RUNNER_TEMP/overleaf"
+          cd "$RUNNER_TEMP/overleaf"
+          test "$(git rev-parse HEAD)" = "$expected"
+          test ! -e humboldt-publication.tex
+          cp "$RUNNER_TEMP/approved.tex" humboldt-publication.tex
+          git add -- humboldt-publication.tex
+          test "$(git diff --cached --name-only)" = humboldt-publication.tex
+          git -c user.name="CV sync" -c user.email="cv-sync@users.noreply.github.com" commit -m "Add approved Humboldt ten-year publication list"
+          git push origin HEAD:refs/heads/main
+          git ls-remote "$url" refs/heads/main
