@@ -1,0 +1,47 @@
+name: Push approved Humboldt key publications to Overleaf
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/push-humboldt-key-publications.yml']
+permissions:
+  contents: read
+concurrency:
+  group: cv-overleaf-bridge
+  cancel-in-progress: false
+jobs:
+  push:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Push approved file only if Overleaf revision is unchanged
+        shell: bash
+        env:
+          OVERLEAF_GIT_TOKEN: ${{ secrets.OVERLEAF_GIT_TOKEN }}
+        run: |
+          set -euo pipefail
+          test -n "$OVERLEAF_GIT_TOKEN" || { echo "::error::Missing Overleaf credential"; exit 1; }
+          git diff --quiet eda66390601ecfa7b623fd21ad57c31fa9bddea5 HEAD -- humboldt-key-publications.tex || { echo "::error::Approved source changed"; exit 1; }
+          git show eda66390601ecfa7b623fd21ad57c31fa9bddea5:humboldt-key-publications.tex > "$RUNNER_TEMP/approved.tex"
+          askpass="$(mktemp "$RUNNER_TEMP/askpass.XXXXXX")"
+          trap 'rm -f "$askpass"' EXIT
+          printf '%s\n' '#!/bin/sh' 'case "$1" in *Username*) echo git ;; *Password*) echo "$OVERLEAF_GIT_TOKEN" ;; *) exit 1 ;; esac' > "$askpass"
+          chmod 700 "$askpass"
+          export GIT_ASKPASS="$askpass" GIT_TERMINAL_PROMPT=0
+          url="https://git@git.overleaf.com/6704e7d42e9e70f3e90c0b29"
+          expected="a48041b"
+          current="$(git ls-remote "$url" refs/heads/main | cut -f1)"
+          case "$current" in "$expected"*) ;; *) echo "::error::Overleaf changed since last verified push; refusing to overwrite"; exit 1 ;; esac
+          git clone --quiet -b main "$url" "$RUNNER_TEMP/overleaf"
+          cd "$RUNNER_TEMP/overleaf"
+          case "$(git rev-parse HEAD)" in "$expected"*) ;; *) echo "::error::Overleaf moved during clone"; exit 1 ;; esac
+          test ! -e humboldt-key-publications.tex || { echo "::error::Destination already exists"; exit 1; }
+          cp "$RUNNER_TEMP/approved.tex" humboldt-key-publications.tex
+          git add -- humboldt-key-publications.tex
+          test "$(git diff --cached --name-only)" = humboldt-key-publications.tex
+          git -c user.name="CV sync" -c user.email="cv-sync@users.noreply.github.com" commit -m "Add approved five key Humboldt publications"
+          git push origin HEAD:refs/heads/main
+          git ls-remote "$url" refs/heads/main
