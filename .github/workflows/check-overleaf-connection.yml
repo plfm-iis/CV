@@ -1,0 +1,45 @@
+name: Check CV Overleaf connection
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/check-overleaf-connection.yml
+
+permissions:
+  contents: read
+
+concurrency:
+  group: cv-overleaf-bridge
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check Overleaf Git access without changing files
+        shell: bash
+        env:
+          OVERLEAF_GIT_TOKEN: ${{ secrets.OVERLEAF_GIT_TOKEN }}
+        run: |
+          set -euo pipefail
+          if [[ -z "${OVERLEAF_GIT_TOKEN}" ]]; then
+            echo "::error::OVERLEAF_GIT_TOKEN is unavailable in plfm-iis/CV. Grant access to the existing organization secret, if configured."
+            exit 1
+          fi
+          askpass="$(mktemp "${RUNNER_TEMP}/cv-overleaf-askpass.XXXXXX")"
+          trap 'rm -f "$askpass"' EXIT
+          cat > "$askpass" <<'SH'
+          #!/bin/sh
+          case "$1" in
+            *Username*) printf '%s\n' git ;;
+            *Password*) printf '%s\n' "$OVERLEAF_GIT_TOKEN" ;;
+            *) exit 1 ;;
+          esac
+          SH
+          chmod 700 "$askpass"
+          export GIT_ASKPASS="$askpass"
+          export GIT_TERMINAL_PROMPT=0
+          git ls-remote --symref https://git@git.overleaf.com/6704e7d42e9e70f3e90c0b29 HEAD
