@@ -1,0 +1,109 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[a4paper,margin=0.78in]{geometry}
+\usepackage{fontspec}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
+\usepackage{titlesec}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{microtype}
+\usepackage{fancyhdr}
+\setmainfont{DejaVu Serif}
+\setsansfont{DejaVu Sans}
+\definecolor{accent}{HTML}{1F4E79}
+\definecolor{muted}{HTML}{555555}
+\titleformat{\section}{\large\sffamily\bfseries\color{accent}}{}{0pt}{}[\vspace{-0.35em}\color{accent}\titlerule]
+\titlespacing*{\section}{0pt}{1.0em}{0.45em}
+\setlist[itemize]{leftmargin=1.25em,itemsep=0.2em,topsep=0.2em}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.25em}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\footnotesize\sffamily Yu-Fang Chen}
+\fancyhead[R]{\footnotesize\sffamily Curriculum Vitae}
+\fancyfoot[C]{\footnotesize\thepage}
+\renewcommand{\headrulewidth}{0.3pt}
+\newcommand{\careerentry}[3]{\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash\color{muted}\sffamily}p{0.17\textwidth}X@{}}#1 & \textbf{#2}\\[-0.05em] & #3\end{tabularx}\vspace{0.45em}}
+\begin{document}
+\begin{center}
+{\LARGE\sffamily\bfseries Yu-Fang Chen}\\[0.3em]
+{\large Research Fellow (Professor rank)}\\[0.15em]
+Institute of Information Science, Academia Sinica, Taiwan
+\end{center}
+\vspace{0.2em}
+\begin{tabularx}{\textwidth}{@{}Xr@{}}
+No. 128, Sec. 2, Academia Road, Nangang, Taipei 115, Taiwan & \href{mailto:yfc@iis.sinica.edu.tw}{yfc@iis.sinica.edu.tw}\\
+Phone: +886-2-2788-3799 ext. 1514 & \href{https://iis.sinica.edu.tw/~yfc}{Personal website}\\
+ORCID: \href{https://orcid.org/0000-0003-2872-0336}{0000-0003-2872-0336} & \href{https://dblp.org/pid/76/1885}{DBLP}
+\end{tabularx}
+
+\section{Research Profile}
+My research develops automata-theoretic and automated-reasoning methods for establishing correctness guarantees in computing systems. Over the course of my career, I have worked on automata algorithms, formal verification, string constraints and satisfiability modulo theories, and, more recently, verification and computer-aided design of quantum programs. This research has led to practical tools including AutoQ for quantum-program verification and Z3-Noodler for string constraints. My current research extends these methods toward quantum error correction and fault-tolerant quantum computing.
+
+\section{Academic and Professional Career}
+\careerentry{2016--present}{Research Fellow (Professor rank)}{Institute of Information Science, Academia Sinica, Taipei, Taiwan}
+\careerentry{2013--2016}{Associate Research Fellow (Associate Professor rank)}{Institute of Information Science, Academia Sinica, Taipei, Taiwan}
+\careerentry{2009--2013}{Assistant Research Fellow (Assistant Professor rank)}{Institute of Information Science, Academia Sinica, Taipei, Taiwan}
+\careerentry{2009}{Postdoctoral Researcher}{Uppsala University, Sweden}
+
+\section{Education}
+\careerentry{2008}{Ph.D. in Computer Science}{National Taiwan University, Taipei, Taiwan}
+
+\section{Major Honors and Awards}
+\begin{itemize}
+\item \textbf{Academia Sinica Scholar Award}, second cohort, 2025--2029 (five-year competitive research support).
+\item \textbf{Communications of the ACM Research Highlights}, 2025, selection of the PLDI 2023 quantum-verification research.
+\item \textbf{TACAS Best Paper Nomination}, 2024, for work on the Z3-Noodler string solver.
+\item \textbf{Young Scholar Creativity Award}, Foundation for the Advancement of Outstanding Scholarship, Taiwan, 2023.
+\item \textbf{PLDI Distinguished Paper Award}, 2023, for automata-based verification of quantum circuits.
+\item \textbf{OOPSLA Distinguished Paper Award}, 2023, for string-constraint solving.
+\item \textbf{FM Best Paper Award}, 2023, for word equations and regular constraints.
+\item \textbf{MOST Research Project for Excellent Junior Research Investigators}, 2020--2023.
+\item \textbf{TACAS Best Paper Award}, 2010, for automata language inclusion.
+\end{itemize}
+
+\section{Major Scientific Contributions}
+\begin{itemize}
+\item \textbf{Verification of quantum circuits and programs.} Initiated the AutoQ line of research, developing automata-based symbolic representations and verification techniques for quantum circuits and programs. Its foundational work received the PLDI 2023 Distinguished Paper Award and appeared in the 2025 \emph{Communications of the ACM Research Highlights}.
+\item \textbf{String constraints and SMT solving.} Developed algorithms and implemented tools for reasoning about string constraints and word equations. Z3-Noodler won the string-related divisions of SMT-COMP 2024; related research received the OOPSLA 2023 Distinguished Paper Award, FM 2023 Best Paper Award, and TACAS 2024 Best Paper Nomination.
+\item \textbf{Automata algorithms and learning-based verification.} Contributed to language-inclusion checking, automata learning, and automated verification of concurrent systems, including work recognized by the TACAS 2010 Best Paper Award and research on learning omega-regular languages.
+\item \textbf{Current direction: reliable quantum computing.} Building on quantum-program verification, current projects investigate verification of fault-tolerant error-correction protocols, quantum error-correcting codes, and quantum simulation algorithms. These projects remain ongoing.
+\end{itemize}
+
+\section{International Academic Leadership and Professional Service}
+\begin{itemize}
+\item Program Committee Co-Chair, \textbf{VMCAI 2026}; Area Chair, \textbf{CAV 2026}.
+\item Program Committee Chair, \textbf{ATVA 2019}; Steering Committee Member, \textbf{ATVA}.
+\item Program Committee service includes \textbf{PLDI, CAV, TACAS, LICS, FoSSaCS, CONCUR, SAS, FASE, VMCAI, FM, and ATVA} (selected appointments, 2019--2026).
+\item Co-organizer, Dagstuhl Seminar on formal analysis and verification in quantum programming languages, 2026.
+\item Co-founder and organizer, Workshop on Verified Quantum Computing (VQC), 2025; co-organizer, Meeting on String Constraints and Applications (MOSCA), 2023.
+\item Organizer of the Formosan Summer School on Logic, Language, and Computation (FLOLAC), in odd-numbered years since 2017.
+\end{itemize}
+
+\section{Selected Keynote and Invited Lectures}
+\begin{itemize}
+\item Keynote speaker, \emph{Highlights of Logic, Games and Automata}, 2025.
+\item Invited speaker, \emph{Formal Methods in Quantum Computing Workshop}, 2026.
+\item Invited speaker, Simons Institute workshop, University of California, Berkeley, 2024.
+\end{itemize}
+
+\section{Research Supervision and Mentoring}
+I have mentored postdoctoral researchers, research assistants, interns, and students jointly supervised with universities. Former group members who subsequently pursued academic careers include:
+\begin{itemize}
+\item \textbf{Ond\v{r}ej Leng\'al}, former postdoctoral researcher; Associate Professor, Brno University of Technology.
+\item \textbf{Jyun-Ao Lin}, former postdoctoral researcher; Assistant Professor, National Taipei University of Technology.
+\item \textbf{Chiao Hsieh}, former research assistant; Assistant Professor, Japan Advanced Institute of Science and Technology.
+\item \textbf{Chih-Duo Hong}, former research assistant; Assistant Professor, National Chengchi University.
+\item \textbf{Di-De Yen}, former research assistant; Postdoctoral Researcher, University of Liverpool.
+\end{itemize}
+
+\section{Selected Research Software}
+\begin{itemize}
+\item \textbf{AutoQ / AutoQ 2.0}: automata-based verification of quantum circuits and programs.
+\item \textbf{Z3-Noodler}: automata-based SMT string solver integrated with Z3.
+\item \textbf{ROLL}: omega-regular language-learning library; \textbf{GOAL}: tool for omega automata and temporal logic.
+\end{itemize}
+\vfill
+\begin{center}\footnotesize\color{muted}Updated: October 2026. Publication list provided separately.\end{center}
+\end{document}
