@@ -1,0 +1,39 @@
+name: Push Humboldt CV to Overleaf
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/push-humboldt-cv-to-overleaf.yml']
+permissions:
+  contents: read
+jobs:
+  push:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Push single approved CV file
+        shell: bash
+        env:
+          OVERLEAF_GIT_TOKEN: ${{ secrets.OVERLEAF_GIT_TOKEN }}
+        run: |
+          set -euo pipefail
+          test -n "$OVERLEAF_GIT_TOKEN"
+          git diff --quiet 2cb30eb59a7fa36443c5f0950d0986a33101fc1a HEAD -- humboldt-CV.tex
+          git show 2cb30eb59a7fa36443c5f0950d0986a33101fc1a:humboldt-CV.tex > "$RUNNER_TEMP/approved.tex"
+          printf '%s\n' '#!/bin/sh' 'case "$1" in *Username*) echo git ;; *Password*) echo "$OVERLEAF_GIT_TOKEN" ;; *) exit 1 ;; esac' > "$RUNNER_TEMP/askpass"
+          chmod 700 "$RUNNER_TEMP/askpass"
+          export GIT_ASKPASS="$RUNNER_TEMP/askpass" GIT_TERMINAL_PROMPT=0
+          url="https://git@git.overleaf.com/6704e7d42e9e70f3e90c0b29"
+          expected="bb727d8bbf9aeba128b39022391fedd320ee4031"
+          current="$(git ls-remote "$url" refs/heads/main | cut -f1)"
+          test "$current" = "$expected" || { echo "::error::Overleaf changed; refusing overwrite"; exit 1; }
+          git clone --quiet -b main "$url" "$RUNNER_TEMP/overleaf"
+          cd "$RUNNER_TEMP/overleaf"
+          test "$(git rev-parse HEAD)" = "$expected"
+          test ! -e humboldt-CV.tex
+          cp "$RUNNER_TEMP/approved.tex" humboldt-CV.tex
+          git add humboldt-CV.tex
+          test "$(git diff --cached --name-only)" = humboldt-CV.tex
+          git -c user.name="CV sync" -c user.email="cv-sync@users.noreply.github.com" commit -m "Add approved Humboldt CV"
+          git push origin HEAD:main
