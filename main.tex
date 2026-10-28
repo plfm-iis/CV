@@ -1,0 +1,317 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[a4paper,margin=0.75in]{geometry}
+\usepackage{fontspec}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
+\usepackage{titlesec}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{microtype}
+\usepackage{fancyhdr}
+
+\setmainfont{DejaVu Serif}
+\setsansfont{DejaVu Sans}
+\definecolor{accent}{HTML}{1F4E79}
+\definecolor{muted}{HTML}{555555}
+
+\titleformat{\section}
+  {\large\sffamily\bfseries\color{accent}}
+  {}{0pt}{}[\vspace{-0.35em}\color{accent}\titlerule]
+\titlespacing*{\section}{0pt}{1.2em}{0.55em}
+\setlist[itemize]{leftmargin=1.35em,itemsep=0.25em,topsep=0.25em}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.25em}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\footnotesize\sffamily Yu-Fang Chen}
+\fancyhead[R]{\footnotesize\sffamily Curriculum Vitae}
+\fancyfoot[C]{\footnotesize\thepage}
+\renewcommand{\headrulewidth}{0.3pt}
+
+\newcommand{\cvitem}[2]{%
+  \begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash\bfseries}p{0.20\textwidth}X@{}}
+  #1 & #2
+  \end{tabularx}\vspace{0.35em}}
+\newcommand{\careerentry}[3]{%
+  \begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash\color{muted}\sffamily}p{0.16\textwidth}%
+    >{\raggedright\arraybackslash}X@{}}
+  #1 & \textbf{#2}\\[-0.05em]
+     & #3
+  \end{tabularx}\vspace{0.55em}}
+\newcommand{\award}[1]{\textbf{#1}}
+\newcommand{\myname}{\textbf{Yu-Fang Chen}}
+
+\begin{document}
+
+\begin{center}
+  {\LARGE\sffamily\bfseries Yu-Fang Chen}\\[0.3em]
+  {\large Research Fellow / Professor}\\[0.15em]
+  Institute of Information Science, Academia Sinica
+\end{center}
+\vspace{0.3em}
+
+\begin{tabularx}{\textwidth}{@{}Xr@{}}
+No.\ 128, Sec.\ 2, Academia Road, Nangang, Taipei 115, Taiwan &
+\href{mailto:yfc@iis.sinica.edu.tw}{yfc@iis.sinica.edu.tw}\\
+Phone: +886-2-2788-3799 ext.\ 1514 &
+\href{https://iis.sinica.edu.tw/~yfc}{iis.sinica.edu.tw/\textasciitilde yfc}\\
+ORCID: \href{https://orcid.org/0000-0003-2872-0336}{0000-0003-2872-0336} &
+\href{https://dblp.org/pid/76/1885}{DBLP profile}
+\end{tabularx}
+
+\section{Research Profile}
+
+My research develops automated reasoning methods for reliable computing, with
+current emphasis on formal verification and computer-aided design for quantum
+programs and fault-tolerant quantum computing. My work connects automata theory,
+program verification, and satisfiability modulo theories, and has produced the
+AutoQ quantum program verifier and the Z3-Noodler string solver.
+
+\cvitem{Research interests}{Formal verification; quantum programs and fault-tolerant quantum computing; automata theory; satisfiability modulo theories}
+
+\section{Academic Appointments}
+
+\careerentry{2016--present}{Research Fellow and Professor}
+  {Institute of Information Science, Academia Sinica, Taipei, Taiwan}
+\careerentry{2013--2016}{Associate Research Fellow and Associate Professor}
+  {Institute of Information Science, Academia Sinica, Taipei, Taiwan}
+\careerentry{2009--2013}{Assistant Research Fellow and Assistant Professor}
+  {Institute of Information Science, Academia Sinica, Taipei, Taiwan}
+\careerentry{2009}{Postdoctoral Researcher}
+  {Uppsala University, Sweden}
+
+\section{Education}
+
+\careerentry{2008}{Ph.D. in Computer Science}
+  {National Taiwan University, Taipei, Taiwan}
+
+\section{Honors and Awards}
+
+\begin{itemize}
+  \item \award{Academia Sinica Scholar Award}, second cohort, 2025--2029; a five-year research award providing NT\$6 million annually. The only awardee in information science in the cohort.
+  \item \award{Communications of the ACM Research Highlights}, 2025, for ``An Automata-Based Framework for Verification and Bug Hunting in Quantum Circuits.''
+  \item \award{TACAS Best Paper Nomination}, 2024, for ``Z3-Noodler: An Automata-based String Solver.''
+  \item \award{Young Scholar Creativity Award}, Foundation for the Advancement of Outstanding Scholarship, Taiwan, 2023.
+  \item \award{PLDI Distinguished Paper Award}, 2023, for ``An Automata-based Framework for Verification and Bug Hunting in Quantum Circuits.''
+  \item \award{OOPSLA Distinguished Paper Award}, 2023, for ``Solving String Constraints with Lengths by Stabilization.''
+  \item \award{FM Best Paper Award}, 2023, for ``Word Equations in Synergy with Regular Constraints.''
+  \item \award{MOST Research Project for Excellent Junior Research Investigators}, 2020--2023.
+  \item \award{TACAS Best Paper Award}, 2010, for ``When Simulation Meets Antichain.''
+\end{itemize}
+
+\section{Selected Research Achievements}
+
+\begin{itemize}
+  \item \textbf{Automated verification of quantum programs.}
+  Founded the AutoQ line of research, introducing automata-based symbolic
+  representations and automated reasoning methods for verifying families of
+  quantum circuits and programs. The foundational PLDI 2023 paper received a
+  Distinguished Paper Award and was selected for \emph{Communications of the ACM
+  Research Highlights}.
+
+  \item \textbf{Automated reasoning for string constraints.}
+  Developed automata-based decision procedures and solvers for string and word
+  constraints. Z3-Noodler won all string-related divisions of SMT-COMP 2024,
+  and associated work received the OOPSLA 2023 Distinguished Paper Award,
+  FM 2023 Best Paper Award, and a TACAS 2024 Best Paper Nomination.
+
+  \item \textbf{Automata algorithms and learning-based verification.}
+  Developed scalable language-inclusion, equivalence-checking, and
+  automata-learning algorithms for program verification. This work includes
+  the TACAS 2010 Best Paper Award and a solution to the long-standing problem
+  of active learning for the full class of omega-regular languages.
+\end{itemize}
+
+\section{Selected Publications}
+
+\textit{Awards and distinctions are shown in parentheses.}
+
+\subsection*{Quantum Program Verification and Quantum CAD}
+\begin{enumerate}[leftmargin=1.6em,itemsep=0.45em]
+  \item Parosh Aziz Abdulla, \myname, Michal Hecko, Lukáš Holík,
+  Ondřej Lengál, Jyun-Ao Lin, and Ramanathan S.\ Thinniyam.
+  ``Parameterized Verification of Quantum Circuits.''
+  \emph{Proceedings of the ACM on Programming Languages (POPL)}, 2026.
+
+  \item Wei-Jia Huang, Christophe Chareton, \myname, Kai-Min Chung,
+  Min-Hsiu Hsieh, Alfons Laarman, and Jingyi Mei.
+  ``Equivalence Checking of Quantum Circuits via Path-Sum and Weighted Model Counting.''
+  \emph{TACAS}, 2026.
+
+  \item \myname, Kai-Min Chung, Min-Hsiu Hsieh, Wei-Jia Huang,
+  Ondřej Lengál, Jyun-Ao Lin, and Wei-Lun Tsai.
+  ``AutoQ 2.0: From Verification of Quantum Circuits to Verification of Quantum Programs.''
+  \emph{TACAS}, 2025.
+
+  \item Parosh Aziz Abdulla, Yo-Ga Chen, \myname, Lukáš Holík,
+  Ondřej Lengál, Jyun-Ao Lin, Fang-Yi Lo, and Wei-Lun Tsai.
+  ``Verifying Quantum Circuits with Level-Synchronized Tree Automata.''
+  \emph{POPL}, 2025.
+
+  \item Tian-Fu Chen, \myname, Jie-Hong Jiang, Ondřej Lengál, and
+  Sara Jobranová.
+  ``Accelerating Quantum Circuit Simulation with Symbolic Execution and Loop Summarization.''
+  \emph{ICCAD}, 2024.
+
+  \item \myname, Philipp Rümmer, and Wei-Lun Tsai.
+  ``A Theory of Cartesian Arrays with Applications in Quantum Circuit Verification.''
+  \emph{CADE}, 2023.
+
+  \item \myname, Kai-Min Chung, Ondřej Lengál, Jyun-Ao Lin, and Wei-Lun Tsai.
+  ``AutoQ: An Automata-based Quantum Circuit Verifier.''
+  \emph{CAV}, 2023.
+
+  \item \myname, Kai-Min Chung, Ondřej Lengál, Jyun-Ao Lin, Wei-Lun Tsai,
+  and Di-De Yen.
+  ``An Automata-based Framework for Verification and Bug Hunting in Quantum Circuits.''
+  \emph{PLDI}, 2023.
+  (\textbf{Distinguished Paper Award}; selected for \emph{CACM Research Highlights})
+\end{enumerate}
+
+\subsection*{String Constraints and Satisfiability Modulo Theories}
+\begin{enumerate}[leftmargin=1.6em,itemsep=0.45em,resume]
+  \item Hao Wu, \myname, Zhilin Wu, Bican Xia, and Naijun Zhan.
+  ``A Decision Procedure for String Constraints with String/Integer Conversion
+  and Flat Regular Constraints.'' \emph{Acta Informatica}, 2024.
+
+  \item \myname, David Chocholatý, Vojtěch Havlena, Lukáš Holík,
+  Ondřej Lengál, and Juraj Síc.
+  ``Z3-Noodler: An Automata-based String Solver.''
+  \emph{TACAS}, 2024. (\textbf{Best Paper Nomination})
+
+  \item \myname, David Chocholatý, Vojtěch Havlena, Lukáš Holík,
+  Ondřej Lengál, and Juraj Síc.
+  ``Solving String Constraints with Lengths by Stabilization.''
+  \emph{OOPSLA}, 2023. (\textbf{Distinguished Paper Award})
+
+  \item František Blahoudek, \myname, David Chocholatý, Vojtěch Havlena,
+  Lukáš Holík, Ondřej Lengál, and Juraj Síc.
+  ``Word Equations in Synergy with Regular Constraints.''
+  \emph{FM}, 2023. (\textbf{Best Paper Award})
+
+  \item Parosh Aziz Abdulla, Mohamed Faouzi Atig, \myname, Diep Bao Phi,
+  Lukáš Holík, Ahmed Rezine, and Philipp Rümmer.
+  ``Trau: SMT Solver for String Constraints.''
+  \emph{FMCAD}, 2018.
+
+  \item Parosh Aziz Abdulla, Mohamed Faouzi Atig, \myname, Lukáš Holík,
+  Ahmed Rezine, Philipp Rümmer, and Jari Stenman.
+  ``Norn: A Solver for String Constraints.''
+  \emph{CAV}, 2015.
+\end{enumerate}
+
+\subsection*{Automata, Program Verification, and Systems}
+\begin{enumerate}[leftmargin=1.6em,itemsep=0.45em,resume]
+  \item Matthias Heizmann, \myname, Daniel Dietsch, Matthias Greitschus,
+  Jochen Hoenicke, Yong Li, Alexander Nutz, Betim Musa, Christian Schilling,
+  Tanja Schindler, and Andreas Podelski.
+  ``Ultimate Automizer and the Search for Perfect Interpolants.''
+  \emph{TACAS}, 2018.
+
+  \item \myname, Matthias Heizmann, Ondřej Lengál, Yong Li, Ming-Hsien Tsai,
+  Andrea Turrini, and Lijun Zhang.
+  ``Advanced Automata-based Algorithms for Program Termination Checking.''
+  \emph{PLDI}, 2018.
+
+  \item \myname, Chih-Duo Hong, Philipp Rümmer, and Anthony W.\ Lin.
+  ``Learning to Prove Safety over Parameterised Concurrent Systems.''
+  \emph{FMCAD}, 2017.
+
+  \item \myname, Chiao Hsieh, Ondřej Lengál, Tsung-Ju Lii, Ming-Hsien Tsai,
+  Bow-Yaw Wang, and Farn Wang.
+  ``PAC Learning-based Verification and Model Synthesis.''
+  \emph{ICSE}, 2016.
+
+  \item \myname, Chang-Hong Hsu, Hwan-Chih Lin, Peter Schwabe,
+  Ming-Hsien Tsai, Bow-Yaw Wang, Bo-Yin Yang, and Shang-Yi Yang.
+  ``Verifying Curve25519 Software.'' \emph{CCS}, 2014.
+
+  \item Parosh Aziz Abdulla, \myname, Lorenzo Clemente, Lukáš Holík,
+  Richard Mayr, and Tomáš Vojnar.
+  ``When Simulation Meets Antichain (on Checking Language Inclusion of NFAs).''
+  \emph{TACAS}, 2010. (\textbf{Best Paper Award})
+
+  \item \myname, Edmund M.\ Clarke, Azadeh Farzan, Yih-Kuen Tsay,
+  and Bow-Yaw Wang.
+  ``Learning Minimal Separating DFAs for Compositional Verification.''
+  \emph{TACAS}, 2009.
+
+  \item Azadeh Farzan, \myname, Edmund M.\ Clarke, Yih-Kuen Tsay,
+  and Bow-Yaw Wang.
+  ``Extending Automated Compositional Verification to the Full Class of
+  Omega-Regular Languages.'' \emph{TACAS}, 2008.
+\end{enumerate}
+
+\section{Invited and Keynote Talks}
+
+\begin{itemize}
+  \item Keynote speaker, \emph{Highlights of Logic, Games and Automata}, 2025.
+  \item Invited speaker, \emph{Formal Methods in Quantum Computing Workshop}, 2026.
+  \item Invited participant and speaker, Simons Institute workshop, University of California, Berkeley, 2024.
+  \item Invited participant, NII Shonan Meeting No.\ 224, ``Quantum Software Engineering.''
+\end{itemize}
+
+\section{Academic Leadership and Community Building}
+
+\begin{itemize}
+  \item Co-organizer, Dagstuhl Seminar ``Formal Analysis and Verification in Quantum Programming Languages,'' 2026.
+  \item Co-founder and organizer, First Workshop on Verified Quantum Computing (VQC), 2025, with Runzhou Tao.
+  \item Invited author, quantum verification chapter for the \emph{Handbook of Model Checking}.
+  \item Co-organizer, Meeting on String Constraints and Applications (MOSCA), 2023.
+  \item Principal organizer in odd-numbered years since 2017, Formosan Summer School on Logic, Language, and Computation (FLOLAC).
+\end{itemize}
+
+\section{Professional Service}
+
+\subsection*{Leadership Roles}
+\begin{itemize}
+  \item Area Chair, CAV 2026.
+  \item Program Committee Co-Chair, VMCAI 2026.
+  \item Program Committee Chair, ATVA 2019.
+  \item Steering Committee Member, ATVA.
+\end{itemize}
+
+\subsection*{Program Committees}
+\begin{itemize}
+  \item \textbf{2026:} CAV (Area Chair), PLDI, TACAS, ATVA, VMCAI (PC Co-Chair), FM.
+  \item \textbf{2025:} CAV, ATVA, FoSSaCS.
+  \item \textbf{2024:} CAV, ATVA, CONCUR, DATE, NETYS.
+  \item \textbf{2023:} CAV, ATVA, SAS, DATE.
+  \item \textbf{2022:} CAV, ATVA, VMCAI.
+  \item \textbf{2021:} LICS, ATVA, FASE, VMCAI.
+  \item \textbf{2020:} CONCUR, ATVA, FASE.
+  \item \textbf{2019:} TACAS, ATVA, SAS.
+\end{itemize}
+
+\section{Research Supervision and Mentoring}
+
+At Academia Sinica, I mentor postdoctoral researchers, research assistants,
+student interns, and students jointly supervised with universities. Training
+covers problem formulation, theoretical development, tool implementation,
+experimental evaluation, and international publication.
+
+\begin{itemize}
+  \item \textbf{Ondřej Lengál}, former postdoctoral researcher; now Associate Professor, Brno University of Technology.
+  \item \textbf{Jyun-Ao Lin}, former postdoctoral researcher; now Assistant Professor, National Taipei University of Technology.
+  \item \textbf{Chiao Hsieh}, former research assistant; now Assistant Professor, Japan Advanced Institute of Science and Technology.
+  \item \textbf{Chih-Duo Hong}, former research assistant; now Assistant Professor, National Chengchi University.
+  \item \textbf{Di-De Yen}, former research assistant; now Postdoctoral Researcher, University of Liverpool.
+\end{itemize}
+
+\section{Software and Research Artifacts}
+
+\begin{itemize}
+  \item \textbf{AutoQ / AutoQ 2.0:} automata-based verification of quantum circuits and programs.
+  \item \textbf{Z3-Noodler:} automata-based string solver integrated with Z3; winner of all string-related divisions of SMT-COMP 2024.
+  \item \textbf{ROLL:} omega-regular language learning library.
+  \item \textbf{GOAL:} graphical tool for omega automata and temporal logic.
+\end{itemize}
+
+\vfill
+\begin{center}
+  \footnotesize\color{muted}Last updated: July 2026
+\end{center}
+
+\end{document}

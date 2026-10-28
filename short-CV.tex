@@ -1,0 +1,84 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{fontspec}
+\usepackage{setspace}
+\setlist[itemize]{leftmargin=*, itemsep=1pt, topsep=2pt, parsep=0pt, partopsep=0pt}
+
+\definecolor{cvred}{HTML}{B22222}
+\definecolor{cvgray}{HTML}{F2F2F2}
+\definecolor{cvborder}{HTML}{CCCCCC}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=cvred,
+  urlcolor=cvred
+}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{-5pt}
+
+\begin{document}
+
+\begin{minipage}[t]{0.55\textwidth}
+  {\Huge\bfseries\textcolor{cvred}{Yu-Fang Chen}}\\[4pt]
+  {\Large Curriculum Vitae}\\[12pt]
+  December 2025
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.42\textwidth}
+  \fcolorbox{cvborder}{cvgray}{
+    \begin{minipage}{0.96\textwidth}
+      \vspace{4pt}
+      {\bfseries\textcolor{cvred}{Research Fellow/Professor at}}\\
+      {\bfseries\textcolor{cvred}{Institute of Information Science}}\\
+            Academia Sinica\\[4pt]
+      No.128, Section 2, Academia Road\\
+      Nankang District, Taipei 115, Taiwan\\[6pt]
+      \textcolor{cvred}{Email:} \href{mailto:yfc@iis.sinica.edu.tw}{yfc@iis.sinica.edu.tw}\\
+      \textcolor{cvred}{Phone:} +886-2-2788-3799 \#1514\\
+      \vspace{4pt}
+    \end{minipage}
+  }
+\end{minipage}
+
+\vspace{1em}
+\hrule
+\vspace{0.8em}
+
+\section*{Research}
+\begin{itemize}
+  \item \textbf{Interests:} Algorithmic formal verification; quantum programs (correctness, data structures, semantics).
+  \item \textbf{Selected results:} I started the AutoQ project on automated quantum program verification; contributor to the Medusa quantum simulator.
+  \item \textbf{Ongoing work:} Verification of FTQC, QECC, QSVT-based quantum programs, and programs with unbounded qubits.
+\end{itemize}
+
+\section*{Selected Publications}
+\begin{itemize}
+  \item Y.-F. Chen et al. AutoQ 2.0: From Verification of Quantum Circuits to Verification of Quantum Programs. \textit{TACAS 2025}
+  \item P. A. Abdulla et al. Verifying Quantum Circuits with Level-Synchronized Tree Automata. \textit{POPL 2025}
+  \item T.-F. Chen et al. Accelerating Quantum Circuit Simulation with Symbolic Execution and Loop Summarization. \textit{ICCAD 2024}
+  \item Y.-F. Chen, P. Rümmer, W.-L. Tsai. A Theory of Cartesian Arrays with Applications in Quantum Circuit Verification. \textit{CADE 2023}
+  \item Y.-F. Chen et al. AutoQ: An Automata-based Quantum Circuit Verifier. \textit{CAV 2023}
+  \item Y.-F. Chen et al. An Automata-based Framework for Verification and Bug Hunting in Quantum Circuits. \textit{PLDI 2023} (Distinguished Paper)
+\end{itemize}
+
+\section*{Awards}
+\begin{itemize}
+  \item Research Highlights, CACM
+  \item Best Paper Nomination, TACAS 2024
+  \item Distinguished Paper Awards, OOPSLA 2023; PLDI 2023
+  \item Best Paper Awards, FM 2023; TACAS 2010
+\end{itemize}
+
+\section*{Service}
+\begin{itemize}
+  \item Program Committees (Selected): CAV (2021–2026, Area Chair 2026), ATVA (2019–2026), VMCAI (PC Chair 2026), PLDI 2026, TACAS 2026, FM 2026, FoSSaCS 2025
+  \item Steering Committee: ATVA
+  \item Organization: VMCAI 2026, Dagstuhl seminar 26111, VQC 2025@CAV, MOSCA 2023@CAV, FLOLAC Summer School 2023, ATVA 2019
+\end{itemize}
+
+\end{document}
