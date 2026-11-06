@@ -1,0 +1,47 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[margin=0.76in]{geometry}
+\usepackage{fontspec,enumitem,xcolor,hyperref,titlesec,microtype}
+\setmainfont{DejaVu Serif}
+\setlength{\parindent}{0pt}\setlength{\parskip}{0.32em}
+\definecolor{ink}{HTML}{153B5B}
+\titleformat{\section}{\normalsize\bfseries\color{ink}}{}{0pt}{}
+\titlespacing*{\section}{0pt}{0.9em}{0.15em}
+\begin{document}
+\begin{center}
+{\Large\bfseries Five Key Publications}\par
+{\normalsize Yu-Fang Chen}\par
+{\small Humboldt Research Award nomination | October 2026}
+\end{center}
+\vspace{0.3em}
+The selection illustrates three connected research directions: foundational automata algorithms, advances in automated reasoning for string constraints, and new methods for verifying quantum programs. Taken together, they document a sustained progression from foundational theory to influential verification and solver technology.\par
+\section{1. When Simulation Meets Antichains (TACAS 2010)}
+\textbf{Authors:} Parosh Aziz Abdulla, Yu-Fang Chen, Lukáš Holík, Richard Mayr, Tomáš Vojnar.\\
+\textbf{Reference:} TACAS 2010, pp. 158--174. \textbf{Recognition:} Best Paper Award.
+
+This award-winning paper introduced an efficient way to combine simulation preorders with antichain algorithms for checking universality and language inclusion of nondeterministic word and tree automata. Rather than treating simulation reduction as a separate preprocessing step, the approach uses simulation to prune the antichain search itself. Its experiments demonstrated substantial gains on automata arising from regular expressions and regular model checking. The work also had concrete influence beyond its original implementation: the RAVEN automata-analysis framework independently implemented the paper's simulation-antichain universality algorithms and used them as a basis for simulation-antichain invariant checking. This provides direct evidence that the algorithmic combination developed in the paper has been adopted and extended in later verification software.
+
+\section{2. Word Equations in Synergy with Regular Constraints (FM 2023)}
+\textbf{Authors:} František Blahoudek, Yu-Fang Chen, David Chocholatý, Vojtěch Havlena, Lukáš Holík, Ondřej Lengál, Juraj Síc.\\
+\textbf{Reference:} FM 2023, pp. 403--423. \textbf{Recognition:} Best Paper Award.
+
+This Best Paper Award-winning work introduced a language-based stabilization principle and a tightly integrated treatment of word equations and regular-language constraints. The method uses information from each component to prune the other's search, giving a complete procedure for the chain-free fragment and a competitive approach on challenging benchmarks. Importantly, the central stabilization-based procedure was subsequently incorporated into Z3-Noodler (TACAS 2024), connecting fundamental algorithms to a production-oriented SMT solver. Z3-Noodler won the QF\_Strings category across all reported single-query performance measures at SMT-COMP 2024. The development continued in Z3-Noodler 1.3 (TACAS 2025), which added decision procedures and model generation, demonstrating a sustained line of solver advances.
+
+\section{3. Solving String Constraints with Lengths by Stabilization (OOPSLA 2023)}
+\textbf{Authors:} Yu-Fang Chen, David Chocholatý, Vojtěch Havlena, Lukáš Holík, Ondřej Lengál, Juraj Síc.\\
+\textbf{Reference:} Proceedings of the ACM on Programming Languages 7 (OOPSLA2), pp. 2112--2141, 2023. \textbf{Recognition:} Distinguished Paper Award.
+
+Recognized with an OOPSLA Distinguished Paper Award, this work advanced string solving by integrating stabilization-based automata reasoning with arithmetic constraints on string lengths. Its align-and-split reasoning addresses an obstacle faced by solvers that treat word equations, regular constraints, and length arithmetic largely in isolation. The ideas were implemented and evaluated within Z3-Noodler using the Mata automata library, achieving strong results on challenging SMT-LIB benchmark families. Subsequent Z3-Noodler work extended this solver architecture with additional procedures and model generation, illustrating how the paper's mathematical techniques evolved into an actively developed verification tool.
+
+\newpage
+\section{4. An Automata-Based Framework for Verification and Bug Hunting in Quantum Circuits (PLDI 2023)}
+\textbf{Authors:} Yu-Fang Chen, Kai-Min Chung, Ondřej Lengál, Jyun-Ao Lin, Wei-Lun Tsai, Di-De Yen.\\
+\textbf{Reference:} Proceedings of the ACM on Programming Languages 7 (PLDI), pp. 1218--1243, 2023. \textbf{Recognition:} Distinguished Paper Award; \emph{Communications of the ACM} Research Highlights (2025).
+
+This paper pioneered an automata-based representation of sets of quantum states and an exact symbolic approach to checking properties of quantum circuits. By avoiding explicit enumeration of state vectors, its AutoQ prototype verified a 40-qubit circuit with more than 140,000 gates and detected injected bugs in a 320-qubit circuit on benchmarks where the compared tools failed. The paper received a PLDI Distinguished Paper Award and was selected for the 2025 \emph{Communications of the ACM} Research Highlights. It also established a new research programme at the interface of automata theory and quantum verification: AutoQ 2.0 (TACAS 2025) extended the line toward quantum programs, while later work developed new automata models and techniques for parameterized quantum-circuit verification.
+
+\section{5. Verifying Quantum Circuits with Level-Synchronized Tree Automata (POPL 2025)}
+\textbf{Authors:} Parosh Aziz Abdulla, Yo-Ga Chen, Yu-Fang Chen, Lukáš Holík, Ondřej Lengál, Jyun-Ao Lin, Fang-Yi Lo, Wei-Lun Tsai.\\
+\textbf{Reference:} Proceedings of the ACM on Programming Languages 9 (POPL), pp. 923--953, 2025.
+
+This paper introduced level-synchronized tree automata (LSTAs), a new symbolic representation that coordinates subtrees through synchronized transition choices. It establishes important closure and decision properties and yields an automated algorithm for quantum-circuit verification. The method reduces the worst-case complexity of supported gate operations from exponential in the earlier tree-automata approach to at most quadratic, and its experiments handle problem sizes orders of magnitude larger than previous symbolic verifiers and simulators. Beyond a quantitative performance improvement, LSTAs provide a conceptual route to reasoning about parameterized families of circuits; the subsequent POPL 2026 work on parameterized verification confirms the research direction's continued development.
+\end{document}
